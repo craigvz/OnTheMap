@@ -275,6 +275,7 @@ class UdacityClient: NSObject {
                     let userInfo = [NSLocalizedDescriptionKey : "Your request returned an invalid response!"]
                     completionHandler(result: false, error: NSError(domain: "taskForDeleteMethod", code: 1, userInfo: userInfo))
                 }
+                
                 return
             }
             
@@ -290,6 +291,8 @@ class UdacityClient: NSObject {
         
         //Start the request
         task.resume()
+       
+        
     }
     
     /* Helper: Given raw JSON, return a usable Foundation object */
@@ -307,6 +310,7 @@ class UdacityClient: NSObject {
             completionHandler(result: nil, error: NSError(domain: "parseJSONWithCompletionHandler", code: 1, userInfo: userInfo))
         }
         completionHandler(result: parsedResult, error: nil)
+       
     }
     
     /* Helper function: Given a dictionary of parameters, convert to a string for a url */

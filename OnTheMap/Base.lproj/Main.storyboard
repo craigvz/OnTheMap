@@ -260,6 +260,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="locationTextField" destination="PLU-5e-zMy" id="uHE-lA-v5W"/>
+                        <outlet property="submitButton" destination="Cwu-Kd-1lF" id="A6T-4G-j2H"/>
+                        <outlet property="titleLabel" destination="3za-Q0-M76" id="fQJ-gE-OJQ"/>
                         <outlet property="userLocationMapView" destination="yuZ-lL-TIa" id="NOc-u7-BwB"/>
                     </connections>
                 </viewController>
@@ -297,7 +299,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ng5-pg-IhL">
-                                <rect key="frame" x="136" y="358" width="102" height="55"/>
+                                <rect key="frame" x="136" y="249" width="102" height="55"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <state key="normal" title="POST!">
@@ -343,7 +345,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login to Udacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IyI-9e-q52">
-                                <rect key="frame" x="61" y="214" width="252" height="43"/>
+                                <rect key="frame" x="61" y="214" width="251.5" height="42.5"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Roboto-Thin" family="Roboto" pointSize="36"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -359,10 +361,10 @@
                                 <rect key="frame" x="16" y="327" width="343" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEz-EI-C2U">
-                                <rect key="frame" x="169" y="383" width="38" height="30"/>
+                                <rect key="frame" x="168.5" y="382.5" width="38" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -389,7 +391,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dont have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pp0-M9-zD9">
-                                <rect key="frame" x="16" y="600" width="158" height="19"/>
+                                <rect key="frame" x="16" y="600" width="157.5" height="19"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="Roboto-Thin" family="Roboto" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

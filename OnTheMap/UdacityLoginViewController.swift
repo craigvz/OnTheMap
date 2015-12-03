@@ -12,7 +12,7 @@ import Reachability
 import FBSDKLoginKit
 
 
-class UdacityLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
+class UdacityLoginViewController: UIViewController, FBSDKLoginButtonDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -50,6 +50,9 @@ class UdacityLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         
     }
     @IBAction func didTouchLogin(sender: AnyObject) {
+        
+        emailTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
         
         if (client.isReachable == true){
         
@@ -116,6 +119,11 @@ class UdacityLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                 print(errorString)
             }
         })
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 
 }

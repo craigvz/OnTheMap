@@ -20,6 +20,7 @@ extension UdacityClient {
                 completionHandler(didSucceed: false, error: error)
             } else {
                 completionHandler(didSucceed: true, error: nil)
+                self.userID = nil
             }
         }
     }

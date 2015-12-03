@@ -9,11 +9,13 @@
 import UIKit
 import MapKit
 
-class GeocodeAddressViewController: UIViewController {
+class GeocodeAddressViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var userLocationMapView: MKMapView!
     @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var submitButton: UIButton!
     var activityIndicator : UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(0,0, 100, 100)) as UIActivityIndicatorView
 
     override func viewDidLoad() {
@@ -33,13 +35,24 @@ class GeocodeAddressViewController: UIViewController {
     
     }
     @IBAction func didTouchSubmitButton(sender: AnyObject) {
+        locationTextField.resignFirstResponder()
         geocodeAddress(locationTextField.text!)
     }
     
     func geocodeAddress(submittedLocation: String) {
         
         startSpinning()
+        
+        //Additional indications of activity, such as modifying alpha/transparency of interface elements.
+        titleLabel.text = "Geocoding..."
+        submitButton.alpha = 0.5
+        
         let geoCoder = CLGeocoder()
+        
+        if (UdacityClient.sharedInstance().isReachable == false) {
+            let controller = UIAlertController.showAlertController("Network Trouble", alertMessage: "Could not connect to the internet- Try Again")
+            self.presentViewController(controller, animated: true, completion: nil)
+        } else {
         
         geoCoder.geocodeAddressString(submittedLocation) { (placeMarks, error) -> Void in
             
@@ -59,6 +72,8 @@ class GeocodeAddressViewController: UIViewController {
                 UdacityClient.sharedInstance().udacityUser?.lon = Double((placemark.location?.coordinate.longitude)!)
 
                 self.activityIndicator.stopAnimating()
+                self.titleLabel.text = "Hi There!"
+                self.submitButton.alpha = 1.0
             }
             else{
                 print("Could Not Geocode String")
@@ -70,6 +85,7 @@ class GeocodeAddressViewController: UIViewController {
 
             }
         }
+        }
         
     }
     
@@ -79,6 +95,12 @@ class GeocodeAddressViewController: UIViewController {
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+    }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
 }

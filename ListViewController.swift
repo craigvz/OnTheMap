@@ -11,7 +11,6 @@ import FBSDKLoginKit
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var students: [StudentInfo] = [StudentInfo]()
     @IBOutlet var studentTableView: UITableView?
 
     override func viewDidLoad() {
@@ -25,14 +24,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        UdacityClient.sharedInstance().getStudentLocations { students, error in
-            if let students = students {
-                self.students = students
+        //Retrieve Student Info
+        UdacityClient.sharedInstance().getStudentLocations { (students, error) -> Void in
+            if let students = students as [StudentInfo]!{
+                UdacityClient.sharedInstance().students = students
                 dispatch_async(dispatch_get_main_queue()) {
-                  
+                    print("Successfully retrieved Student Info")
                 }
             } else {
-                print(error)
+                    print(error)
             }
         }
     }
@@ -72,10 +72,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBAction func didTouchRefreshButton(sender: AnyObject) {
         
+        //Retrieve Student Info
         UdacityClient.sharedInstance().getStudentLocations { (students, error) -> Void in
-            if let students = students{
+            if let students = students as [StudentInfo]!{
                 UdacityClient.sharedInstance().students = students
                 dispatch_async(dispatch_get_main_queue()) {
+
                     self.studentTableView?.reloadData()
                 }
             }else{
@@ -88,7 +90,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
-    
     @IBAction func didTouchLogoutButton() {
         
         if ((FBSDKAccessToken.currentAccessToken()) != nil) {

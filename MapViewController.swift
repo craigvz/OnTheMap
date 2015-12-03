@@ -12,7 +12,6 @@ import FBSDKLoginKit
 
 class MapViewController: UIViewController {
     
-     var students: [StudentInfo] = [StudentInfo]()
         var filePath : String {
             let manager = NSFileManager.defaultManager()
             let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
@@ -43,15 +42,17 @@ class MapViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
        
-        UdacityClient.sharedInstance().getStudentLocations { students, error in
-            if let students = students {
-                self.students = students
+        //Retrieve Student Info
+        UdacityClient.sharedInstance().getStudentLocations { (students, error) -> Void in
+            if let students = students as [StudentInfo]!{
+                UdacityClient.sharedInstance().students = students
                 dispatch_async(dispatch_get_main_queue()) {
                     let annotationsToRemove = self.studentMapView.annotations
                     self.studentMapView.removeAnnotations( annotationsToRemove )
                     self.addMapAnnotations()
                 }
-            } else {
+        }
+        else {
                 print(error)
                 let controller = UIAlertController.showAlertController("Oh No... ", alertMessage: "Could Not Retrieve Student Info- Try Again")
                 dispatch_async(dispatch_get_main_queue()){
@@ -133,10 +134,12 @@ class MapViewController: UIViewController {
     
     @IBAction func didTouchRefreshButton(sender: AnyObject) {
 
+        //Retrieve Student Info
         UdacityClient.sharedInstance().getStudentLocations { (students, error) -> Void in
-            if let students = students{
+            if let students = students as [StudentInfo]!{
                 UdacityClient.sharedInstance().students = students
                 dispatch_async(dispatch_get_main_queue()) {
+
                     let annotationsToRemove = self.studentMapView.annotations
                     self.studentMapView.removeAnnotations( annotationsToRemove )
                     self.addMapAnnotations()
@@ -163,6 +166,7 @@ class MapViewController: UIViewController {
             if (didSucceed){
                 dispatch_async(dispatch_get_main_queue()) {
                     self.presentLoginViewController()
+                    
                 }
             }
             else{
