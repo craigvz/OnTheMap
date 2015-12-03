@@ -201,7 +201,7 @@ extension UdacityClient {
     
     func getStudentLocations(completionHandler: (result: [StudentInfo]?, error: NSError?) -> Void){
         
-        let parameters = [UdacityClient.ParameterKeys.Limit : "50",
+        let parameters = [UdacityClient.ParameterKeys.Limit : "100",
             UdacityClient.ParameterKeys.Order : "-updatedAt"
         ]
         

@@ -105,9 +105,17 @@
                                 <animations/>
                                 <items>
                                     <navigationItem title="On The Map" id="C9U-Kc-BJq">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="dn7-xh-0mX"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="dn7-xh-0mX">
+                                            <connections>
+                                                <action selector="didTouchLogoutButton" destination="8rJ-Kc-sve" id="EBD-uh-r7J"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <rightBarButtonItems>
-                                            <barButtonItem systemItem="refresh" id="1J0-Qg-2MT"/>
+                                            <barButtonItem systemItem="refresh" id="1J0-Qg-2MT">
+                                                <connections>
+                                                    <action selector="didTouchRefreshButton:" destination="8rJ-Kc-sve" id="vwn-Xx-3Pb"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem image="pin" id="hNs-CY-lnv">
                                                 <connections>
                                                     <segue destination="QJn-So-eMt" kind="presentation" id="uYy-pe-TVd"/>
@@ -474,6 +482,6 @@
         <image name="pin" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Eph-rV-LHU"/>
+        <segue reference="uYy-pe-TVd"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -69,13 +69,30 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
             UIApplication.sharedApplication().openURL(NSURL(string: student.mediaURL)!)
         }
     }
+    
+    @IBAction func didTouchRefreshButton(sender: AnyObject) {
+        
+        UdacityClient.sharedInstance().getStudentLocations { (students, error) -> Void in
+            if let students = students{
+                UdacityClient.sharedInstance().students = students
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.studentTableView?.reloadData()
+                }
+            }else{
+                dispatch_async(dispatch_get_main_queue()) {
+                    print(error)
+                    let controller = UIAlertController.showAlertController("OOPS", alertMessage: "Something wen't wrong and cant refresh- Try Again")
+                    self.presentViewController(controller, animated: true, completion: nil)
+                }
+            }
+        }
+    }
 
     
-    func didTouchLogoutButton() {
+    @IBAction func didTouchLogoutButton() {
         
         if ((FBSDKAccessToken.currentAccessToken()) != nil) {
             FBSDKAccessToken.setCurrentAccessToken(nil)
-            
         }
         
         FBSDKLoginManager().logOut()
@@ -83,18 +100,26 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         UdacityClient.sharedInstance().logOutOfSession() { (didSucceed, error) -> Void in
             if (didSucceed){
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.presentLoginViewController()
                 }
             }
             else{
                 dispatch_async(dispatch_get_main_queue()) {
                     print(error)
-                    let controller = UIAlertController.showAlertController("Uh OK", alertMessage: "Unable to Logout- Try Again")
+                    let controller = UIAlertController.showAlertController("OOPS", alertMessage: "Unable to Logout- Try Again")
                     self.presentViewController(controller, animated: true, completion: nil)
-                
-            }
+                }
             }
         }
     }
+    
+    func presentLoginViewController () {
+        
+        if(UdacityClient.sharedInstance().userID == nil) && (FBSDKAccessToken.currentAccessToken() == nil){
+            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("loginVC") as! UdacityLoginViewController
+            self.presentViewController(vc, animated: true, completion: nil)
+        }
+    }
+
 
 }

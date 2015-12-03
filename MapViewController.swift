@@ -47,6 +47,8 @@ class MapViewController: UIViewController {
             if let students = students {
                 self.students = students
                 dispatch_async(dispatch_get_main_queue()) {
+                    let annotationsToRemove = self.studentMapView.annotations
+                    self.studentMapView.removeAnnotations( annotationsToRemove )
                     self.addMapAnnotations()
                 }
             } else {
@@ -97,6 +99,7 @@ class MapViewController: UIViewController {
             pinView!.canShowCallout = true
             pinView!.pinTintColor = UIColor.redColor()
             pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            pinView!.animatesDrop = true
         }
         else {
             pinView!.annotation = annotation
