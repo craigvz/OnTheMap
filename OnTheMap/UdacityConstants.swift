@@ -23,7 +23,6 @@ extension UdacityClient {
         static let ParseBaseURLSecure : String = "https://api.parse.com/1/"
         static let UdacityBaseURLSecure : String = "https://www.udacity.com/"
         
-        
     }
     
     struct Methods  {

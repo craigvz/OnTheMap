@@ -89,10 +89,6 @@ extension UdacityClient {
         }
     }
     
-        
-    
-    
-    
     
     func authenticateWithFacebook(accessToken: String, completionHandler: (success: Bool, errorString: String?) -> Void){
         createSessionWithFacebook(accessToken) { (success, userID, errorString) -> Void in

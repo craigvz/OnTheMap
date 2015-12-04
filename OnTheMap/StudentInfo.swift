@@ -22,7 +22,6 @@ struct StudentInfo {
     var updatedAt: NSDate?
     
 
-    
     init(dictionary: NSDictionary) {
         
         objectID = dictionary[UdacityClient.JSONResponseKeys.ObjectID] as? String

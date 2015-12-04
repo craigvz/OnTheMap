@@ -29,12 +29,10 @@ class UdacityClient: NSObject {
     var userID : String? = nil
     var udacityUser : StudentInfo? = nil
     
-    
     override init() {
         session = NSURLSession.sharedSession()
         super.init()
     }
-    
     
     //MARK: Network Connection
     
@@ -47,7 +45,6 @@ class UdacityClient: NSObject {
             print("Unable to create Reachability")
             return
         }
-        
         
         reachability.whenReachable = { reachability in
             // this is called on a background thread, but UI updates must
@@ -80,7 +77,6 @@ class UdacityClient: NSObject {
     }
     
     func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        
         
         //Check if we're calling Udacity or Parse API and assigning associated URL
         if (method.containsString(UdacityClient.ParameterKeys.api)){
@@ -337,5 +333,4 @@ class UdacityClient: NSObject {
     }
     
 }
-
 
