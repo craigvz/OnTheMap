@@ -29,8 +29,6 @@ class UdacityClient: NSObject {
     var userID : String? = nil
     var udacityUser : StudentInfo? = nil
     
-    /* students array */
-  //  var students : [StudentInfo]? = nil
     
     override init() {
         session = NSURLSession.sharedSession()

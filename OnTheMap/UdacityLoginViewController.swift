@@ -43,7 +43,6 @@ class UdacityLoginViewController: UIViewController, FBSDKLoginButtonDelegate, UI
 
     }
 
-
     @IBAction func didTouchSignUpButton(sender: AnyObject) {
         
         UIApplication.sharedApplication().openURL(NSURL(string: "https://www.udacity.com/account/auth#!/signup")!)
