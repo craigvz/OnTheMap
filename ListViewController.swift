@@ -19,6 +19,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let background = CAGradientLayer().turquoiseColor()
         background.frame = self.view.bounds
         self.view.layer.insertSublayer(background, atIndex: 0)
+        print(StudentData().students)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -27,9 +28,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //Retrieve Student Info
         UdacityClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students as [StudentInfo]!{
-                UdacityClient.sharedInstance().students = students
+                StudentData.sharedInstance().students = students
+                
                 dispatch_async(dispatch_get_main_queue()) {
                     print("Successfully retrieved Student Info")
+                    self.studentTableView?.reloadData()
                 }
             } else {
                     print(error)
@@ -38,13 +41,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UdacityClient.sharedInstance().students!.count;
+     
+            return StudentData.sharedInstance().students.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:StudentCell = studentTableView!.dequeueReusableCellWithIdentifier("cell") as! StudentCell
         
-        let student = UdacityClient.sharedInstance().students![indexPath.row]
+        let student = StudentData.sharedInstance().students[indexPath.row]
+    
         
         cell.firstName?.text = student.firstName
         cell.lastName?.text = student.lastName
@@ -56,7 +61,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let student = UdacityClient.sharedInstance().students![indexPath.row]
+        let student = StudentData.sharedInstance().students[indexPath.row]
         
         if !UIApplication.sharedApplication().openURL(NSURL(string: student.mediaURL)!) {
             
@@ -75,7 +80,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         //Retrieve Student Info
         UdacityClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students as [StudentInfo]!{
-                UdacityClient.sharedInstance().students = students
+                StudentData.sharedInstance().students = students
                 dispatch_async(dispatch_get_main_queue()) {
 
                     self.studentTableView?.reloadData()

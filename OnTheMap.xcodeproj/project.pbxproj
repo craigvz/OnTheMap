@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4413AFEA1C0FF4950047EFE8 /* PostStudentInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4413AFE91C0FF4950047EFE8 /* PostStudentInfoViewController.swift */; };
 		4413AFEE1C100C380047EFE8 /* UIAlertController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4413AFED1C100C380047EFE8 /* UIAlertController+Convenience.swift */; };
+		4413B0101C1145A90047EFE8 /* StudentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4413B00F1C1145A90047EFE8 /* StudentData.swift */; };
 		442C7F2F1C04356500ED465A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C7F2E1C04356500ED465A /* Reachability.swift */; };
 		442C7F321C0437FD00ED465A /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442C7F311C0437FD00ED465A /* Reachability.framework */; };
 		442C7F361C06C92200ED465A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442C7F331C06C92200ED465A /* FBSDKCoreKit.framework */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		4413AFE91C0FF4950047EFE8 /* PostStudentInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostStudentInfoViewController.swift; path = ../PostStudentInfoViewController.swift; sourceTree = "<group>"; };
 		4413AFED1C100C380047EFE8 /* UIAlertController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Convenience.swift"; sourceTree = "<group>"; };
+		4413B00F1C1145A90047EFE8 /* StudentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentData.swift; sourceTree = "<group>"; };
 		442C7F2E1C04356500ED465A /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		442C7F301C04364800ED465A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		442C7F311C0437FD00ED465A /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reachability.framework; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				442C7F301C04364800ED465A /* Reachability.h */,
 				442C7F2E1C04356500ED465A /* Reachability.swift */,
 				442C7F3D1C092BAC00ED465A /* StudentInfo.swift */,
+				4413B00F1C1145A90047EFE8 /* StudentData.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				44EA85221C01AACF00439124 /* ListViewController.swift in Sources */,
 				442C7F2F1C04356500ED465A /* Reachability.swift in Sources */,
 				44EA84E31C01A56E00439124 /* AppDelegate.swift in Sources */,
+				4413B0101C1145A90047EFE8 /* StudentData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

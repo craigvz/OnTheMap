@@ -46,6 +46,7 @@ class GeocodeAddressViewController: UIViewController, UITextFieldDelegate {
         //Additional indications of activity, such as modifying alpha/transparency of interface elements.
         titleLabel.text = "Geocoding..."
         submitButton.alpha = 0.5
+        self.view.alpha = 0.5
         
         let geoCoder = CLGeocoder()
         
@@ -74,6 +75,7 @@ class GeocodeAddressViewController: UIViewController, UITextFieldDelegate {
                 self.activityIndicator.stopAnimating()
                 self.titleLabel.text = "Hi There!"
                 self.submitButton.alpha = 1.0
+                self.view.alpha = 1.0
             }
             else{
                 print("Could Not Geocode String")

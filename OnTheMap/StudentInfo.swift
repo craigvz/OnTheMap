@@ -56,7 +56,7 @@ struct StudentInfo {
         for result in results {
             students.append(StudentInfo(dictionary: result))
         }
-        
+       
         return students
     }
 }

@@ -45,7 +45,8 @@ class MapViewController: UIViewController {
         //Retrieve Student Info
         UdacityClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students as [StudentInfo]!{
-                UdacityClient.sharedInstance().students = students
+                StudentData.sharedInstance().students = students
+                
                 dispatch_async(dispatch_get_main_queue()) {
                     let annotationsToRemove = self.studentMapView.annotations
                     self.studentMapView.removeAnnotations( annotationsToRemove )
@@ -67,8 +68,8 @@ class MapViewController: UIViewController {
     func addMapAnnotations()
     {
         var annotations = [MKPointAnnotation]()
-        
-        for student in UdacityClient.sharedInstance().students! {
+      
+        for student in StudentData.sharedInstance().students {
             
             let lat = CLLocationDegrees(student.lat!)
             let long = CLLocationDegrees(student.lon!)
@@ -137,7 +138,8 @@ class MapViewController: UIViewController {
         //Retrieve Student Info
         UdacityClient.sharedInstance().getStudentLocations { (students, error) -> Void in
             if let students = students as [StudentInfo]!{
-                UdacityClient.sharedInstance().students = students
+              //  UdacityClient.sharedInstance().students = students
+                    StudentData().students = students
                 dispatch_async(dispatch_get_main_queue()) {
 
                     let annotationsToRemove = self.studentMapView.annotations

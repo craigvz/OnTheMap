@@ -213,7 +213,8 @@ extension UdacityClient {
             } else {
                 if let results = JSONResult[UdacityClient.JSONResponseKeys.results] as? [[String:AnyObject]]{
                     let students = StudentInfo.studentsFromResults(results)
-                    UdacityClient.sharedInstance().students = students
+                        StudentData.sharedInstance().students = students
+                    
                     completionHandler(result: students, error: nil)
                 }
                 else{
